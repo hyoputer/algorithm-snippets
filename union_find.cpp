@@ -1,4 +1,5 @@
-int setnumber[1000001];
+int setnumber[200001];
+int setsize[200001];
 
 int find_set(int a)
 {
@@ -18,6 +19,10 @@ void set_union(int a, int b)
   int bparent = find_set(b);
   
   if(aparent != bparent)
+  {
+    //printf("%daaa\n", aparent);
     setnumber[aparent] = bparent;
+    setsize[bparent] += setsize[aparent];
+  }
   return;
 }
