@@ -9,7 +9,7 @@ ll ccw(pl p1, pl p2, pl p3) {
         return 0;
     }
 }
-
+//from http://wookje.dance/2019/05/19/boj-2162/
 int iscross(pi a, pi b, pi c, pi d) {
     int r1 = ccw(a,b,c)*ccw(a,b,d);
     int r2 = ccw(c,d,a)*ccw(c,d,b);
