@@ -11,7 +11,7 @@ void prime_factors(int idx, int n)
     temp++;
     n = n/2; 
     factorization[idx].push_back(2);
-    if(primes.back() != 2)
+    if(primes.empty())
       primes.push_back(2);
   }
   reslcm[2] = max(reslcm[2], temp);
