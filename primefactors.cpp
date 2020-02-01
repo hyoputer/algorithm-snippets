@@ -11,6 +11,8 @@ void prime_factors(int idx, int n)
     temp++;
     n = n/2; 
     factorization[idx].push_back(2);
+    if(primes.back() != 2)
+      primes.push_back(2);
   }
   reslcm[2] = max(reslcm[2], temp);
 
@@ -40,4 +42,21 @@ void prime_factors(int idx, int n)
     if(find(primes.begin(), primes.end(), n) == primes.end())
       primes.push_back(n);
   }
+}
+
+ll phi(ll x)
+{
+  primes.clear();
+  prime_factors(x);
+  
+  //printf("aaaa\n");
+  
+  ll res = x;
+  
+  int size = primes.size();
+  
+  for(int i = 0 ; i < size; i++)
+    res = (res - res/primes[i]);
+  
+  return res;
 }
