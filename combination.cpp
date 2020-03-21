@@ -19,20 +19,18 @@ int main (){
 	vector<int> ind;
 
 	// k=4, 4개를 뽑으니까
-	int k = 4;
+  int k = 4;
 
-	// k개의 1 추가
+  // 2개(6개-2개)의 0 추가
+  for (int i = 0; i < n.size() - k; i++)
+  {
+    ind.push_back(0);
+  }
+
+  // k개의 1 추가
 	for(int i=0; i<k; i++){
 		ind.push_back(1);
 	}
-
-	// 2개(6개-2개)의 0 추가
-	for(int i=0; i<n.size()-k; i++){
-		ind.push_back(0);
-	}
-
-	// 정렬
-	sort(ind.begin(), ind.end());
 
 	//순열
 	do{
