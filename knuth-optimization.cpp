@@ -1,17 +1,17 @@
-for (i = 1; i <= n; i++)
+for int i = 0; i < n; i++)
 {
     dp[i][i] = 0;
     p[i][i] = i;
 }
 
-for (j = 2; j <= n; j++)
+for (int i = 1; i < n; i++)
 {
-    for (i = 1; i <= n - j + 1; i++)
+    for (int j = 0; i + j < n ; j++)
     {
         s = i, e = i + j - 1;
         dp[s][e] = vMax;
 
-        for (k = p[s][e - 1]; k <= p[s + 1][e]; k++)
+        for (int k = p[s][e - 1]; k <= p[s + 1][e]; k++)
         {
             if (dp[s][e] > dp[s][k] + dp[k + 1][e])
             {
@@ -23,5 +23,3 @@ for (j = 2; j <= n; j++)
         dp[s][e] += cost[s][e];
     }
 }
-// [출처] Knuth Optimization(Dynamic Programming) | 작성자 쭈노치킨
-// from http://blog.naver.com/PostView.nhn?blogId=jyuno426&logNo=220803642982&parentCategoryNo=&categoryNo=19&viewDate=&isShowPopularPosts=false&from=postView
