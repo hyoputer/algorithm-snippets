@@ -21,5 +21,8 @@ ll inv(ll a) {
 }
 
 ll comb(ll a, ll b) {
+  if (a < b || a < 0 || b < 0)
+    return 0;
+    
   return (fact[a] * inv((fact[a-b] * fact[b]) % mod)) % mod;
 }
