@@ -1,29 +1,28 @@
-vector<pi> adj[100001];
-int visited[100001];
 
-pi traverse(int n)
+vector<int> adj[100001];
+
+pi traverse(int cur, int pre)
 {
   //printf("%daa\n", n);
-  visited[n] = 1;
   vector<int> childs;
   int diameter = 0;
-  for(int i = 0; i < adj[n].size(); i++)
+  for (int i = 0; i < adj[cur].size(); i++)
   {
-    if(visited[adj[n][i].first] == 0)
+    if (adj[cur][i] != pre)
     {
-      pi next = traverse(adj[n][i].first);
-      childs.push_back(adj[n][i].second + next.first);
+      pi next = traverse(adj[cur][i], cur);
+      childs.push_back(next.first + 1);
       diameter = max(diameter, next.second);
     }
   }
-  
+
   sort(childs.begin(), childs.end(), greater<int>());
-  
+
   if (childs.size() >= 2)
     diameter = max(diameter, childs[0] + childs[1]);
   else if (childs.size() == 1)
     diameter = max(diameter, childs[0]);
-  
+
   if (childs.empty())
     return make_pair(0, diameter);
   else
