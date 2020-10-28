@@ -20,7 +20,7 @@ public:
 Graph::Graph(int V) 
 { 
 	this->V = V; 
-	adj = new list<pi> [V]; 
+	adj = new list<pi> [V + 1]; 
 } 
 
 void Graph::addEdge(int u, int v, int w) 
@@ -39,8 +39,8 @@ pair<int, vector<int> > Graph::shortestPath(int src, int dest)
 
 	// Create a vector for distances and initialize all 
 	// distances as infinite (INF) 
-	vector<int> dist(V, INT_MAX);
-  vector<int> pre(V, -1);
+	vector<int> dist(V + 1, INT_MAX);
+    vector<int> pre(V + 1, -1);
 
 	// Insert source itself in priority queue and initialize 
 	// its distance as 0. 
