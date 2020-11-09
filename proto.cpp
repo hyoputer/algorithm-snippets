@@ -23,12 +23,12 @@ typedef pair<ll, ll> pl;
 
 int main()
 {
-  FILE *inF, *outF;
-  inF = fopen("in", "r");
-  //outF = fopen("out", "w");
-  //inF = stdin;
-  outF = stdout;
+    FILE *inF, *outF;
+    inF = fopen("in", "r");
+    outF = fopen("out", "w");
+    //inF = stdin;
+    //outF = stdout;
   
-  return 0;
+    return 0;
 }
 //인풋 바꾸기!!!!
