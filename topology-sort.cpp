@@ -1,31 +1,9 @@
-#include <iostream>
-#include <stdlib.h>
-#include <algorithm>
-#include <queue>
-#include <stack>
-#include <vector>
-#include <utility>
-#include <string.h>
-#include <string>
-#include <cmath>
-#include <cstdio>
-#include <functional>
-#include <map>
-#include <typeinfo>
-#include <bits/stdc++.h>
-#define INF 1e9
-using namespace std;
-typedef long long ll;
-typedef pair<int, int> pi;
-typedef pair<double, double> pd;
-typedef pair<ll, ll> pl;
-
-vector<int> nextv[501];
-int pre[501];
+vector<int> nextv[32001];
+int pre[32001];
 vector<int> sorted;
 int n;
 
-void topsort()
+bool topsort()
 {
     queue<int> q;
 
@@ -53,6 +31,11 @@ void topsort()
             }
         }
     }
+
+    if (sorted.size() != n)
+        return false;
+    else
+        return true;
 }
 
 int main()
@@ -61,51 +44,22 @@ int main()
     inF = stdin;
     outF = stdout;
 
-    fscanf(inF, "%d", &n);
+    int m;
+    fscanf(inF, "%d %d", &n, &m);
 
-    vector<int> prev[501] = {};
-    int time[501] = {};
-
-    for (int i = 1; i <= n; i++)
+    for (int i = 0; i < m; i++)
     {
-        int num;
-        fscanf(inF, "%d", &num);
-        while (num != -1)
-        {
-            if (time[i] == 0)
-            {
-                time[i] = num;
-            }
-            else
-            {
-                prev[i].push_back(num);
-                nextv[num].push_back(i);
-                pre[i]++;
-            }
+        int a, b;
+        fscanf(inF, "%d %d", &a, &b);
 
-            fscanf(inF, "%d", &num);
-        }
+        nextv[a].push_back(b);
+        pre[b]++;
     }
 
     topsort();
 
-    int dp[501] = {};
-
     for (int i = 0; i < sorted.size(); i++)
-    {
-        int curtime = 0;
-        for (int j = 0; j < prev[sorted[i]].size(); j++)
-        {
-            curtime = max(dp[prev[sorted[i]][j]], curtime);
-        }
-
-        dp[sorted[i]] = curtime + time[sorted[i]];
-    }
-
-    for (int i = 1; i <= n; i++)
-    {
-        fprintf(outF, "%d\n", dp[i]);
-    }
+        fprintf(outF, "%d ", sorted[i]);
 
     return 0;
 }
