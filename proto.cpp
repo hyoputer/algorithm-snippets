@@ -20,8 +20,8 @@ typedef pair<int, int> pi;
 typedef pair<double, double> pd;
 typedef pair<ll, ll> pl;
 
-FILE *inF = stdin;
-FILE *outF = stdout;
+FILE *inF = fopen("in", "r");
+FILE *outF = fopen("out", "w");
 
 int main()
 {
