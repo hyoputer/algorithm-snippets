@@ -20,11 +20,11 @@ typedef pair<int, int> pi;
 typedef pair<double, double> pd;
 typedef pair<ll, ll> pl;
 
+FILE *inF = stdin;
+FILE *outF = stdout;
+
 int main()
 {
-    FILE *inF, *outF;
-    inF = fopen("in", "r");
-    outF = fopen("out", "w");
 
     return 0;
 }
