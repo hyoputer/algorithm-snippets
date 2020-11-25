@@ -1,14 +1,9 @@
-// idx: 1 ~ n
-ll arr[1000001];
-ll tree[3000000];
-int n;
-
 ll makeSegmentTree(int node, int start, int end)
 {
     if (start == end)
         tree[node] = arr[start];
     else
-        tree[node] = makeSegmentTree(node * 2, start, (start + end) / 2) + makeSegmentTree(node * 2 + 1, (start + end) / 2 + 1, end);
+        tree[node] = makeSegmentTree(node * 2, start, (start + end) / 2) * makeSegmentTree(node * 2 + 1, (start + end) / 2 + 1, end) % MOD;
 
     return tree[node];
 }
@@ -36,11 +31,13 @@ void changeNumber(int idx, ll num)
         nodes.push_back(node);
     }
 
-    for (int n : nodes)
-        tree[n] = tree[n] - tree[node] + num;
+    tree[node] = num;
+
+    for (int i = (int)nodes.size() - 2; i >= 0; i--)
+        tree[nodes[i]] = tree[nodes[i] * 2] * tree[nodes[i] * 2 + 1] % MOD;
 }
 
-ll getSum(int start, int end, int segStart, int segEnd, int node)
+ll getMult(int start, int end, int segStart, int segEnd, int node)
 {
     if (start == segStart && end == segEnd)
         return tree[node];
@@ -48,11 +45,11 @@ ll getSum(int start, int end, int segStart, int segEnd, int node)
     int mid = (segStart + segEnd) / 2;
 
     if (start <= mid && end > mid)
-        return getSum(start, mid, segStart, mid, node * 2) + getSum(mid + 1, end, mid + 1, segEnd, node * 2 + 1);
+        return getMult(start, mid, segStart, mid, node * 2) * getMult(mid + 1, end, mid + 1, segEnd, node * 2 + 1) % MOD;
 
     if (end <= mid)
-        return getSum(start, end, segStart, mid, node * 2);
+        return getMult(start, end, segStart, mid, node * 2);
 
     if (start > mid)
-        return getSum(start, end, mid + 1, segEnd, node * 2 + 1);
+        return getMult(start, end, mid + 1, segEnd, node * 2 + 1);
 }
