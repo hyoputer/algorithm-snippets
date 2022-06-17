@@ -57,8 +57,12 @@ pair<int, vector<int> > Graph::shortestPath(int src, int dest)
 		// has to be done this way to keep the vertices 
 		// sorted distance (distance must be first item 
 		// in pair) 
+
+		int td = pq.top().first;
 		int u = pq.top().second; 
 		pq.pop(); 
+		if(dist[u] < td)
+			continue;
 
 		// 'i' is used to get all adjacent vertices of a vertex 
 		list< pair<int, int> >::iterator i; 
