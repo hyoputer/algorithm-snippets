@@ -28,7 +28,8 @@ void Graph::addEdge(int u, int v, int w)
 	adj[u].push_back(make_pair(v, w)); 
 } 
 
-// Prints shortest paths from src to all other vertices 
+// Prints shortest paths from src to all other vertices
+// 출발점에서 도착점으로 가는 경로가 없을 경우 INF 출력
 pair<int, vector<int> > Graph::shortestPath(int src, int dest) 
 { 
 	// Create a priority queue to store vertices that 
