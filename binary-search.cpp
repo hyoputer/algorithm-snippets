@@ -3,7 +3,7 @@ int b = v.size();
 
 while(f < b)
 {
-    int m = (f + b) / 2;
+    int m = (b - f) / 2 + f;
     if (v[m] < num)
     {
         f = m + 1;
