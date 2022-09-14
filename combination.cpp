@@ -27,11 +27,13 @@ int main (){
     ind.push_back(0);
   }
 
+	
   // k개의 1 추가
 	for(int i=0; i<k; i++){
 		ind.push_back(1);
 	}
 
+	//ind 배열 오름차순 정렬 
 	//순열
 	do{
 		// 출력
